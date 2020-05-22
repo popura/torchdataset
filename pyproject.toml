@@ -2,7 +2,7 @@
 name = "torchdataset"
 version = "0.1.0"
 description = "This is a package to handle various kinds of data in a unified way with Pytorch."
-authors = ["Yuma Kinoshita"]
+authors = ["popura"]
 license = "MIT"
 
 [tool.poetry.dependencies]

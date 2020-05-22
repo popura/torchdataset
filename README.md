@@ -6,11 +6,9 @@ This is a package to handle various kinds of data in a unified way with Pytorch.
 - Pytorch 1.4 or later
 
 # Installation
-Perform setup.py on your computer.
+Just run pip command.
 ```
-git clone https://github.com/popura/torchdataset.git
-cd torchdataset
-python setup.py install
+pip install torchdataset
 ```
 
 # Usage
