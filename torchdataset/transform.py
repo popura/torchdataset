@@ -1,8 +1,3 @@
-from abc import ABCMeta
-from abc import abstractmethod
-import random
-import torchvision.transforms.functional as F
-from torchvision.transforms import RandomResizedCrop
 
 
 class Transform(object):
@@ -17,9 +12,9 @@ class Compose(Transform):
         transforms (list of ``Transform`` objects): list of transforms to compose.
 
     Example:
-        >>> transforms.Compose([
-        >>>     transforms.CenterCrop(10),
-        >>>     transforms.ToTensor(),
+        >>> transform.Compose([
+        >>>     transform.CenterCrop(10),
+        >>>     transform.ToTensor(),
         >>> ])
     """
 
