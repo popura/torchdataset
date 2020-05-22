@@ -12,7 +12,13 @@ AUDIO_EXTENSIONS = (".wav", ".mp3")
 
 
 def default_loader(path):
-    # Sampling rate will be ignored
+    """The default loader for audio tracks where sampling rate will be ignored
+    Args:
+        path: Path to an audio track
+    
+    Returns:
+        waveform: waveform of the audio track
+    """
     waveform, sampling_rate = torchaudio.load(path)
     return waveform
 
