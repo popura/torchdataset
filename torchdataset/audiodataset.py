@@ -23,6 +23,36 @@ def default_loader(path):
     return waveform
 
 
+class UndividedAudioFolder(dataset.UndividedDatasetFolder):
+    """A audio data loader where the audio tracks are arranged in this way: ::
+        root/xxx.wav
+        root/xxy.wav
+        root/xxz.wav
+        root/123.wav
+        root/nsdf3.wav
+        root/asd932_.wav
+    Args:
+        root (string): Root directory path.
+        loader (callable): A function to load a sample given its path.
+        extensions (tuple[string]): A list of allowed extensions.
+            both extensions and is_valid_file should not be passed.
+        transform (callable, optional): A function/transform that takes in
+            a sample and returns a transformed version.
+            E.g, ``transforms.RandomCrop`` for images.
+        is_valid_file (callable, optional): A function that takes path of a file
+            and check if the file is a valid file (used to check of corrupt files)
+            both extensions and is_valid_file should not be passed.
+     Attributes:
+        samples (list): List of sample pathes
+    """
+    def __init__(self, root, transform=None,
+                 loader=default_loader, is_valid_file=None):
+        super(AudioFolder, self).__init__(root, loader, AUDIO_EXTENSIONS if is_valid_file is None else None,
+                                          transform=transform,
+                                          is_valid_file=is_valid_file)
+        self.tracks = self.samples
+
+
 class AudioFolder(dataset.DatasetFolder):
     """A generic data loader where the audio tracks are arranged in this way: ::
 
@@ -47,7 +77,7 @@ class AudioFolder(dataset.DatasetFolder):
      Attributes:
         classes (list): List of the class names sorted alphabetically.
         class_to_idx (dict): Dict with items (class_name, class_index).
-        imgs (list): List of (image path, class_index) tuples
+        tracks (list): List of (image path, class_index) tuples
     """
 
     def __init__(self, root, transform=None, target_transform=None,
