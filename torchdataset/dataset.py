@@ -5,7 +5,7 @@ import os.path
 import torch
 import torch.utils.data as torchdata
 
-from . import transform
+from . import transform as mytf
 
 
 class ClassDataset(torchdata.Dataset):
@@ -33,23 +33,23 @@ class RegDataset(torchdata.Dataset):
 class PureDatasetFolder(torchdata.Dataset):
     _repr_indent = 4
 
-    def __init__(self, root, transforms=None, transform_=None, target_transform=None):
+    def __init__(self, root, transforms=None, transform=None, target_transform=None):
         if isinstance(root, torch._six.string_classes):
             root = os.path.expanduser(root)
         self.root = root
 
         has_transforms = transforms is not None
-        has_separate_transform = transform_ is not None or target_transform is not None
+        has_separate_transform = transform is not None or target_transform is not None
         if has_transforms and has_separate_transform:
             raise ValueError("Only transforms or transform/target_transform can "
                              "be passed as argument")
 
         # for backwards-compatibility
-        self.transform = transform_
+        self.transform = transform
         self.target_transform = target_transform
 
         if has_separate_transform:
-            transforms = transform.StandardTransform(transform_, target_transform)
+            transforms = mytf.StandardTransform(transform, target_transform)
         self.transforms = transforms
 
     def __getitem__(self, index):
@@ -110,9 +110,9 @@ class DatasetFolder(PureDatasetFolder):
         targets (list): The class_index value for each image in the dataset
     """
 
-    def __init__(self, root, loader, extensions=None, transform_=None,
+    def __init__(self, root, loader, extensions=None, transform=None,
                  target_transform=None, is_valid_file=None):
-        super(DatasetFolder, self).__init__(root, transform=transform_,
+        super(DatasetFolder, self).__init__(root, transform=transform,
                                             target_transform=target_transform)
         classes, class_to_idx = self._find_classes(self.root)
         samples = make_dataset(self.root, class_to_idx, extensions, is_valid_file)
