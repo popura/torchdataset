@@ -30,7 +30,7 @@ class RegDataset(torchdata.Dataset):
         return torchdata.ConcatDataset([self, other])
 
 
-class PureDatasetFolder(Dataset):
+class PureDatasetFolder(torchdata.Dataset):
     _repr_indent = 4
 
     def __init__(self, root, transforms=None, transform=None, target_transform=None):
