@@ -49,7 +49,7 @@ class PureDatasetFolder(torchdata.Dataset):
         self.target_transform = target_transform
 
         if has_separate_transform:
-            transforms = mytf.StandardTransform(transform, target_transform)
+            transforms = mytf.SeparatedTransform(transform, target_transform)
         self.transforms = transforms
 
     def __getitem__(self, index):
