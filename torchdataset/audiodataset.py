@@ -60,7 +60,7 @@ class AudioFolder(dataset.DatasetFolder):
     
 
 class PreLoadAudioFolder(dataset.AudioFolder):
-     """A generic data loader storing all transformed data on memory,
+    """A generic data loader storing all transformed data on memory,
         where the audio tracks are arranged in this way: ::
 
         root/car/xxx.wav
