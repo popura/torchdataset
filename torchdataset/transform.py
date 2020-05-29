@@ -21,11 +21,10 @@ class Compose(Transform):
     def __init__(self, transforms):
         self.transforms = transforms
 
-    def __call__(self, *args, **kwargs):
-        outputs = args
+    def __call__(self, data):
         for t in self.transforms:
-            outputs = t(*outputs)
-        return outputs
+            data = t(data)
+        return data
 
     def __repr__(self):
         format_string = self.__class__.__name__ + '('
