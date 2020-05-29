@@ -5,7 +5,7 @@ import os.path
 import torch
 import torch.utils.data as torchdata
 
-from . import transform
+from . import transform as mytf
 
 
 class ClassDataset(torchdata.Dataset):
@@ -49,7 +49,7 @@ class PureDatasetFolder(torchdata.Dataset):
         self.target_transform = target_transform
 
         if has_separate_transform:
-            transforms = transform.StandardTransform(transform, target_transform)
+            transforms = mytf.StandardTransform(transform, target_transform)
         self.transforms = transforms
 
     def __getitem__(self, index):
