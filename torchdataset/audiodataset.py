@@ -87,7 +87,7 @@ class PreLoadAudioFolder(dataset.AudioFolder):
         imgs (list): List of (image path, class_index) tuples
     """
 
-   def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super(PreLoadAudioFolder, self).__init__(*args, **kwargs)
         self.load_all()
     
