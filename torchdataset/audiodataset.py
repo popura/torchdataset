@@ -4,6 +4,7 @@ import os.path
 
 import torch
 import torch.utils.data as torchdata
+import torchaudio
 
 from . import dataset
 
