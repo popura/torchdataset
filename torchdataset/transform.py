@@ -65,7 +65,7 @@ class SeparatedTransform(Transform):
         return '\n'.join(body)
 
 
-class PairedTransform(Transform)
+class PairedTransform(Transform):
     def __call__(self, data, target):
         raise NotImplementedError()
 
