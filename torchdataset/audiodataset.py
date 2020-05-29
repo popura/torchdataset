@@ -59,7 +59,7 @@ class AudioFolder(dataset.DatasetFolder):
         self.tracks = self.samples
     
 
-class PreLoadAudioFolder(dataset.AudioFolder):
+class PreLoadAudioFolder(AudioFolder):
     """A generic data loader storing all transformed data on memory,
         where the audio tracks are arranged in this way: ::
 
