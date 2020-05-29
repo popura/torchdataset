@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "torchdataset"
-version = "0.1.0"
+version = "0.1.1"
 description = "This is a package to handle various kinds of data in a unified way with Pytorch."
 authors = ["popura"]
 license = "MIT"
