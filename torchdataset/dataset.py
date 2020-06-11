@@ -78,7 +78,7 @@ class PureDatasetFolder(torchdata.Dataset):
         return ""
 
 
-class UndividedDatasetFolder(torchdataset.dataset.PureDatasetFolder):
+class UndividedDatasetFolder(PureDatasetFolder):
     """A generic data loader where the samples are arranged in this way: ::
         root/xxx.ext
         root/xxy.ext
