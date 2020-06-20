@@ -45,7 +45,7 @@ class SeparatedTransform(Transform):
             data = self.transform(data)
         if self.target_transform is not None:
             target = self.target_transform(target)
-        return input, target
+        return data, target
 
     def _format_transform_repr(self, transform, head):
         lines = transform.__repr__().splitlines()
