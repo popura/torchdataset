@@ -24,7 +24,7 @@ def default_loader(path):
     return waveform
 
 
-class UndividedAudioFolder(dataset.UndividedDatasetFolder):
+class UnorganizedAudioFolder(dataset.UnorganizedDatasetFolder):
     """A audio data loader where the audio tracks are arranged in this way: ::
         root/xxx.wav
         root/xxy.wav
@@ -46,11 +46,12 @@ class UndividedAudioFolder(dataset.UndividedDatasetFolder):
      Attributes:
         samples (list): List of sample pathes
     """
-    def __init__(self, root, transform=None,
+    def __init__(self, root, transform=None, pre_load=False, pre_transform=None,
                  loader=default_loader, is_valid_file=None):
-        super(AudioFolder, self).__init__(root, loader, AUDIO_EXTENSIONS if is_valid_file is None else None,
-                                          transform=transform,
-                                          is_valid_file=is_valid_file)
+        super(UnorganizedAudioFolder, self).__init__(root, loader, AUDIO_EXTENSIONS if is_valid_file is None else None,
+                                                     transform=transform,
+                                                     pre_load=pre_load, pre_transform=pre_transform,
+                                                     is_valid_file=is_valid_file)
         self.tracks = self.samples
 
 
@@ -81,11 +82,17 @@ class AudioFolder(dataset.DatasetFolder):
         tracks (list): List of (image path, class_index) tuples
     """
 
-    def __init__(self, root, transform=None, target_transform=None,
+    def __init__(self, root, transform=None, target_transform=None, transforms=None,
+                 pre_load=False, pre_tranform=None, pre_target_transform=None, pre_transforms=None,
                  loader=default_loader, is_valid_file=None):
         super(AudioFolder, self).__init__(root, loader, AUDIO_EXTENSIONS if is_valid_file is None else None,
                                           transform=transform,
                                           target_transform=target_transform,
+                                          transforms=transforms,
+                                          pre_load=pre_load,
+                                          pre_transform=pre_transform,
+                                          pre_target_transform=pre_target_transform,
+                                          pre_transforms=pre_transforms,
                                           is_valid_file=is_valid_file)
         self.tracks = self.samples
     
@@ -121,6 +128,7 @@ class PreLoadAudioFolder(AudioFolder):
     def __init__(self, *args, **kwargs):
         super(PreLoadAudioFolder, self).__init__(*args, **kwargs)
         self.load_all()
+        raise FutureWarning
     
     def load_all(self):
         preprocessed_samples = []

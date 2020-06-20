@@ -55,10 +55,16 @@ class ImageFolder(dataset.DatasetFolder):
         imgs (list): List of (image path, class_index) tuples
     """
 
-    def __init__(self, root, transform=None, target_transform=None,
+    def __init__(self, root, transform=None, target_transform=None, transforms=None,
+                 pre_load=False, pre_transform=None, pre_target_transform=None, pre_transforms=None,
                  loader=default_loader, is_valid_file=None):
         super(ImageFolder, self).__init__(root, loader, IMG_EXTENSIONS if is_valid_file is None else None,
                                           transform=transform,
                                           target_transform=target_transform,
+                                          transforms=transforms,
+                                          pre_load=pre_load,
+                                          pre_transform=pre_transform,
+                                          pre_target_transform=pre_target_transform,
+                                          pre_transforms=pre_transforms,
                                           is_valid_file=is_valid_file)
         self.imgs = self.samples
